@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Early Heart Disease Prediction</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/256/2167/2167018.png" type="image/icon type">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+        body {
+            font-family: "DM Sans", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            margin: 0;
+            padding: 0;
+            background-color: #B2D8E9;
+}
+
+nav {
+    background: #B2D8E9;
+    color: #0c0c0c;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.ls {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.ls li {
+    margin: 0 20px;
+}
+
+.ls li a {
+    color:#0c0c0c;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background 0.3s;
+}
+
+.ls li a:hover {
+    background: #ffffff;
+    color: #0c0c0c;
+    border-radius: 2px;
+}
+
+/* Hamburger Menu Icon */
+.menu-icon {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #0c0c0c;
+}
+.ancor{
+    text-decoration: none;
+    color: white;
+}
+
+        .predict{
+            text-decoration: none;
+            padding: 7px 15px;
+            background-color:white ;
+            color: #B2D8E9;
+            border-radius: 5%;
+        }
+        .banner{
+            height: 86vh;
+            width: 100%;
+            background-image: linear-gradient(
+                to bottom right, 
+                rgba(0, 0, 0, 0.5), 
+                rgba(178, 216, 233, 0.3)
+
+            ), 
+            url('../static/asserts/img1.jpeg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .btn {
+            
+            padding: 10px 15px;
+            background-color:white;
+            color: #3858e9;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 18px;
+        }
+        .btn:hover {
+            background-color: #e04343;
+        }
+        .header{
+            padding: 25px 50px;
+            display: flex;
+            justify-content: center;
+        }
+        .header .h1{
+            /* background-color: #dfdfdf; */
+            padding: 10px 0px;
+            width: 70%;
+        }
+        .h1 h2{
+            font-size: 60px;
+            color: white;
+            text-align: center;
+            text-transform: capitalize;
+            font-weight: bolder;
+        }
+        .h1 p{
+            font-size: 22px;
+            padding-left:20px ;
+            color: white;
+            text-align: center;
+            /* line-height: 40px; */
+        }
+        .h1 .btn{
+            margin-left:50px ;
+            background-color: #0c0c0c;
+            color: white;
+            font-weight: 500;
+        }
+        .btn:hover{
+            background-color: #B2D8E9 ;
+            color:#0c0c0c;
+            transition: 0.5s;
+        }
+        .btn-cls{
+            display: flex;
+            justify-content: center;
+            padding-right: 40px;
+            padding-top: 25px;
+        }
+        .project-info{
+            background-color: #a6acb7;
+            color: #0c0c0c;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            height: 80%;
+        }
+        .project-info h1{
+            font-size: 60px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .project-info h2{
+            font-size: 30px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .project-info p{
+            font-size: 20px;
+            color: #393E46;
+            text-align: center;
+            padding: 0px 10%;
+            /* line-height: 40px; */
+        }
+        .ml-model{
+            padding: 5px 10%;
+            display: flex;
+            justify-content: center;
+        }
+        .ml-model h3{
+            font-size: 27px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .ml-model li{
+            color: #393E46;
+            font-size: 20px;
+            /* line-height: 40px; */
+        }
+        .ml-model span{
+            color: #0c0c0c;
+        }
+        .tm-info{
+            width: 100%;
+            height: 80%;
+            margin: 30px 0px;
+        }
+        .tm-info h1{
+            font-size: 50px;
+            text-align: center;
+            padding: 30px 0px;
+            text-transform: uppercase;
+        }
+        .tm-info .tm{
+            display: flex;
+            justify-content: space-around;
+        }
+        .tm-info .intro{
+            padding: 0px 10% 20px 10%;
+            font-size: 20px;
+            color: #a6acb7;
+            line-height: 30px;
+            text-align: center;
+        }
+        .tm-info .box{
+            width: 280px;
+            height: 370px;
+            background-color: #a6acb7;
+            border-radius: 10px;
+            text-align: center;
+            color: #393E46;
+            
+        }
+        .box h2{
+            font-size: 25px;
+            color: #393E46;
+        }
+        .box span{
+            font-weight: 900;
+    
+        }
+
+        .box p{
+            font-size: 18px;
+            text-align: start;
+            padding: 0px 20px;
+        }
+    
+       .hov:hover{
+        background-color: #0c0c0c;
+        transition: 0.2s;
+       }
+       .causes{
+            width: 100%;
+            height: 100%;
+            margin: 0px 0px;
+            background-color: #a6acb7;
+            color: #0c0c0c;
+            text-align: center;
+            padding: 2% 0px;
+       }
+       .causes h1{
+        font-size: 50px;
+        text-transform: uppercase;
+       }
+       .causes .cau{
+        display: flex;
+        justify-content: center;
+       }
+       .causes .cau li{
+        text-align: start;
+        color: #393E46;
+        font-size: 20px;
+        padding: 0 3%;
+        line-height: 40px;
+       }
+       .causes .cau span{
+        color: #0c0c0c;
+        font-weight: 500;
+       }
+       .footer{
+        background-color: #0c0c0c;
+        color: white;
+        width: 100%;
+        height: 60vh;
+        padding: 2% 0px;
+       }
+       .footer h1{
+        font-size: 35px;
+        text-align: center;
+        text-transform: uppercase;
+       }
+       .footer .footer-info{
+        display: flex;
+        justify-content: space-around;
+       }
+       .footer-info div{
+        padding: 0px ;
+       }
+       .footer-info h1{
+        text-align: center;
+        font-size: 30px;
+       }
+       .footer-info p{
+        text-align: center;
+        font-size: 17px;
+       }
+       .predict{
+        text-decoration: none;
+        background-color: #0c0c0c;
+        color: #a6acb7;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-size: 20px;
+    }
+    .predict:hover{
+        background-color: #a6acb7;
+        color: #393E46;
+        transition: 0.3s;
+    }
+       /* Responsive Navigation for Small Screens */
+@media (max-width: 820px) {
+    .menu-icon {
+        display: block;
+        z-index: 3;
+    }
+
+    .ls {
+        display: none;
+        flex-direction: column;
+        background: #B2D8E9;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .ls.active {
+        display: flex;
+    }
+
+    .ls li {
+        padding: 10px;
+        color: #0c0c0c;
+        border-bottom: 1px solid #B2D8E9;
+    }
+
+    .ls li:hover {
+        color: white;
+    }
+    .tm-info .box{
+            width: 180px;
+            height: 360px;
+            background-color: #a6acb7;
+            border-radius: 8px;
+            text-align: center;
+            color: #393E46;
+            
+        }
+        .footer{
+        height: 42vh;
+       }
+       .h1 h2{
+        font-size: 60px;
+        color: white;
+        text-align: center;
+    }
+    .header .h1{
+        /* background-color: #dfdfdf; */
+        padding: 10px 0px;
+        width: 100%;
+    }
+    .h1 p{
+        font-size: 30px;
+        color: white;
+        text-align: center;
+        padding: 0px 10px;
+        /* line-height: 20px; */
+    }
+    .banner{
+        height: 90%;
+        
+    }
+}
+
+       @media (max-width: 480px) {
+        .banner{
+            height: 150%;
+            
+        }
+        .header{
+            padding: 7px 0px;
+            display: flex;
+            justify-content: center;
+        }
+        .header .h1{
+            /* background-color: #dfdfdf; */
+            padding: 10px 0px;
+            width: 100%;
+        }
+        .h1 h2{
+            font-size: 30px;
+            color: white;
+            text-align: center;
+        }
+        .h1 p{
+            font-size: 23px;
+            color: white;
+            text-align: center;
+            padding: 0px 35px;
+            /* line-height: 20px; */
+        }
+        .project-info h1{
+            font-size: 40px;
+            text-align: center;
+        }
+        .project-info h2{
+            font-size: 23px;
+            text-align: center;
+        }
+        .tm-info .tm{
+            display:flex;
+            flex-direction: column;
+            padding: 0px 10%;
+            gap: 70px;
+        }
+        .tm-info .box{
+            width: 300px;
+            height: 360px;
+            background-color: #a6acb7;
+            border-radius: 10px;
+            text-align: center;
+            color: #393E46;
+            
+        }
+        .ls li {
+            padding: 10px;
+            color: #0c0c0c;
+            border-bottom: 1px solid #B2D8E9;
+        }
+    
+        .ls li:hover {
+            color: white;
+        }
+        .footer{
+        height: 90vh;
+       }
+       
+       }
+    </style>
+</head>
+<body>
+    <nav>
+        <p class="nav-title">Early Heart Disease Prediction</p>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <span id="menu-icon">&#9776;</span> <!-- Default Hamburger Icon -->
+        </div>
+        <ul class="ls" id="menu">
+            <li><a href="/" class="ancor">Home</a></li>
+            <li><a href="/about" class="ancor">Info</a></li>
+            <li><a href="/trends" class="ancor">Trends</a></li>
+            <li><a href="/article" class="ancor">Articles</a></li>
+            <li><a href="/team" class="ancor">Team Members</a></li>
+        </ul>
+    </nav>
+    <div class="banner">
+        <div class="header">
+            <div class="h1">
+                <h2>Welcome to the Early Heart Disease Prediction System</h2>
+                <p>This web app predicts heart disease risk using health data. Our machine learning model analyzes factors like age, blood pressure, cholesterol, and lifestyle choices to help with early diagnosis and prevention. While it doesn't replace medical advice, it acts as a useful guide for monitoring health.
+                </p>
+                <div class="btn-cls">
+                    <a href="/prediction" class="btn">Start Prediction</a> 
+                </div>   
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div>
+            <h1>Heart Disease Prediction</h1>
+            <div class="footer-info">
+                <div>
+                    <h1>Team Memebers</h1>
+                    <p>Kotaru Sai Naga Venkata Adarsh - [21A31A1246]</p>
+                    <p>Akumarthi Aksha Sharmila - [21A31A1201]</p>
+                    <p>Bagga Indravathi - [21A31A1202]</p>
+                    <p>Gubbala Jaya Kumar - [22A35A1202]</p>
+                </div>
+                <div>
+                    <h1>Details</h1>
+                    <p>2021-2025 Batch</p>
+                    <p>Information Technology Department</p>
+                    <p>Pragati Engineering College</p>
+                </div>
+            </div>
+            <hr style="margin-top: 4%; border-color: #393E46;">
+            <p style="text-align: center; font-size: 30px; text-transform: uppercase; font-weight: bold;">Batch@2025</p>
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+    let menu = document.getElementById("menu");
+    let icon = document.getElementById("menu-icon");
+
+    menu.classList.toggle("active");
+
+    if (menu.classList.contains("active")) 
+    {
+        icon.innerHTML = "&#10006;"; 
+    } 
+    else 
+    {
+        icon.innerHTML = "&#9776;"; 
+    }
+}
+
+    </script>
+</body>
+</html>

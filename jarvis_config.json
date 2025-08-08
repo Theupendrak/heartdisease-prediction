@@ -1,0 +1,10 @@
+{
+    "music_directory": "C:/Users/User/Music",
+    "screenshot_directory": "D:/Screenshots",
+    "wake_word": "jarvis",
+    "theme_color": "#4A90E2",
+    "custom_commands": {},
+    "wave_color": "#00BFFF",
+    "listening_color": "#00FF00",
+    "speaking_color": "#FF6B6B"
+}
